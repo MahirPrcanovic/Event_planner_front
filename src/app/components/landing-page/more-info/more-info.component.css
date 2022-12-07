@@ -1,0 +1,11 @@
+.color {
+  background-color: #3a45b8;
+}
+.color-text {
+  color: #272c8e;
+}
+.buttonRadius {
+  border-radius: 3rem;
+  font-size: 1rem;
+  max-width: 130px;
+}

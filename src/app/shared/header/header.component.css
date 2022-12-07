@@ -1,0 +1,19 @@
+.list-item {
+  width: 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.padding {
+  padding-left: 2rem;
+  padding-right: 3rem;
+}
+.logo {
+  width: 50px;
+}
+@media (max-width: 990px) {
+  .padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
