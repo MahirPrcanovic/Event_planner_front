@@ -3,8 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingModule } from './modules/landing/landing.module';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { HeroSectionComponent } from './components/login-page/hero-section/hero-section.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterHeroSection } from './components/register-page/hero-section/register-hero-section.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    HeroSectionComponent,
+    RegisterPageComponent,
+    RegisterHeroSection,
+  ],
   imports: [BrowserModule, AppRoutingModule, LandingModule],
   providers: [],
   bootstrap: [AppComponent],
