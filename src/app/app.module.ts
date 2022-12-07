@@ -7,6 +7,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { HeroSectionComponent } from './components/login-page/hero-section/hero-section.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterHeroSection } from './components/register-page/hero-section/register-hero-section.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AuthRouteComponent } from './routes/login-route/auth-route.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,8 +17,15 @@ import { RegisterHeroSection } from './components/register-page/hero-section/reg
     HeroSectionComponent,
     RegisterPageComponent,
     RegisterHeroSection,
+    AuthRouteComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, LandingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LandingModule,
+    FormsModule,
+    RouterModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

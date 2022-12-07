@@ -6,21 +6,24 @@ import { SubscribeComponent } from 'src/app/components/landing-page/subscribe/su
 import { LandingPageComponent } from 'src/app/pages/landing-page/landing-page.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     HeroSectionComponent,
     MoreInfoComponent,
     SubscribeComponent,
     LandingPageComponent,
-    HeaderComponent,
     FooterComponent,
+    HeaderComponent,
   ],
   exports: [
     HeroSectionComponent,
     MoreInfoComponent,
     SubscribeComponent,
     LandingPageComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class LandingModule {}
