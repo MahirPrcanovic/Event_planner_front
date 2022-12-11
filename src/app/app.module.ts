@@ -10,6 +10,9 @@ import { RegisterHeroSection } from './components/register-page/hero-section/reg
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRouteComponent } from './routes/login-route/auth-route.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { EventsPageComponent } from './pages/events-page/events-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +21,8 @@ import { AuthRouteComponent } from './routes/login-route/auth-route.component';
     RegisterPageComponent,
     RegisterHeroSection,
     AuthRouteComponent,
+    AdminPageComponent,
+    EventsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +30,7 @@ import { AuthRouteComponent } from './routes/login-route/auth-route.component';
     LandingModule,
     FormsModule,
     RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

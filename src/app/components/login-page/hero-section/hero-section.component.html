@@ -22,16 +22,18 @@
           <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0">Login to your account</p>
           </div>
-
+          <div class="divider d-flex align-items-center my-4" *ngIf="hasError">
+            <p class="text-center fw-bold mx-3 mb-0 text-danger">{{ error }}</p>
+          </div>
           <div class="form-outline mb-4">
-            <label class="form-label" for="form3Example3">Username</label>
+            <label class="form-label" for="form3Example3">Email</label>
             <input
               type="username"
               id="form3Example3"
               class="form-control form-control-lg"
-              placeholder="Enter a valid username"
+              placeholder="Enter a valid email"
               ngModel
-              name="userName"
+              name="username"
             />
           </div>
 
