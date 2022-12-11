@@ -13,4 +13,12 @@ export class AuthService {
       password: credentials.password,
     });
   }
+  register(data: {
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
+  }) {
+    return this.http.post('http://localhost:8080/user/save', data);
+  }
 }
