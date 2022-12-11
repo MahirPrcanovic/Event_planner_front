@@ -7,11 +7,12 @@ import { Subject } from 'rxjs';
 export class AuthService {
   authenticated = new Subject<boolean>();
   constructor(private http: HttpClient) {}
-  login(credentials: { username: string; password: string }) {
-    return this.http.post('http://localhost:8080/user/login', {
-      username: credentials.username,
-      password: credentials.password,
-    });
+  login(credentials: {
+    username: string;
+    password: string;
+    rememberMe: boolean;
+  }) {
+    return this.http.post('http://localhost:8080/user/login', credentials);
   }
   register(data: {
     firstName: string;
