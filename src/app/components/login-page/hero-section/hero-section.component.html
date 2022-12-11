@@ -69,7 +69,16 @@
           </div>
           <!-- <p class="bg-danger text-white">{{ error }}</p> -->
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            <div *ngIf="loading" class="">
+              <div class="spinner-border" role="status"></div>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              *ngIf="!loading"
+            >
+              Login
+            </button>
           </div>
         </form>
       </div>
