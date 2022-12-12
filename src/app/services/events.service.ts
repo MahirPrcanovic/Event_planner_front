@@ -9,4 +9,7 @@ export class EventsService {
   fetchAll() {
     return this.http.get(environment.apiURL + 'event');
   }
+  fetchSingle(id: string) {
+    return this.http.get(environment.apiURL + 'event/' + id);
+  }
 }

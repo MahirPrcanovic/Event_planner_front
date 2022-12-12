@@ -6,6 +6,8 @@ import { AuthRouteComponent } from './routes/login-route/auth-route.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
+import { EventRouteComponent } from './routes/event-route/event-route.component';
+import { EventDetailComponent } from './components/events-page/event-detail/event-detail.component';
 
 const routes: Routes = [
   {
@@ -26,8 +28,12 @@ const routes: Routes = [
     component: AdminPageComponent,
   },
   {
-    path: 'events',
-    component: EventsPageComponent,
+    path: 'event',
+    component: EventRouteComponent,
+    children: [
+      { path: '', component: EventsPageComponent },
+      { path: ':id', component: EventDetailComponent },
+    ],
   },
 ];
 

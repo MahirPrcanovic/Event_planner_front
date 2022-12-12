@@ -13,6 +13,7 @@ import { AuthRouteComponent } from './routes/login-route/auth-route.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { EventsModule } from './modules/events/events.module';
+import { EventRouteComponent } from './routes/event-route/event-route.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { EventsModule } from './modules/events/events.module';
     RegisterHeroSection,
     AuthRouteComponent,
     AdminPageComponent,
+    EventRouteComponent,
   ],
   imports: [
     BrowserModule,
