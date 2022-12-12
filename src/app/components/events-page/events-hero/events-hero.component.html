@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div *ngIf="events.length == 0 && !loading">
+    <p class="text-center text-primary">No current events. Check later.</p>
+  </div>
+  <div *ngIf="loading == true">
+    <p class="text-center text-primary">Loading...</p>
+  </div>
+  <div *ngIf="!success && !loading">
+    <p class="text-center text-primary">{{ error }}</p>
+  </div>
+  <div class="row row-cols-4">
+    <div class="col mb-5" *ngFor="let event of events">
+      <app-event-card [event]="event"></app-event-card>
+    </div>
+  </div>
+</div>

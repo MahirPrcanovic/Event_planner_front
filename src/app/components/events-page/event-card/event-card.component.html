@@ -1,0 +1,29 @@
+<div class="card" style="width: 18rem">
+  <img
+    src="{{
+      event.pictureUrl ||
+        'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg'
+    }} "
+    class="card-img-top"
+    alt="event pic"
+    ngOptimizedImage
+    loading="lazy"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ event.name }}</h5>
+    <p class="card-text">
+      {{ event.description }}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Date: {{ event.date }}</li>
+    <li class="list-group-item">Location: {{ event.location.name }}</li>
+    <li class="list-group-item">Category: {{ event.category.name }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link" [routerLink]="['event', event.id]"
+      >See more</a
+    >
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
