@@ -120,48 +120,7 @@
                 </a>
               </div>
             </div>
-            <div
-              class="card-footer py-3 border-0"
-              style="background-color: #f8f9fa"
-            >
-              <form #f="ngForm" (ngSubmit)="addComment(f)">
-                <div class="d-flex flex-start w-100">
-                  <img
-                    class="rounded-circle shadow-1-strong me-3"
-                    src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg"
-                    alt="avatar"
-                    width="40"
-                    height="40"
-                  />
-                  <div class="form-outline w-100">
-                    <textarea
-                      class="form-control"
-                      id="textAreaExample"
-                      rows="4"
-                      style="background: #fff"
-                      ngModel
-                      name="comment"
-                    ></textarea>
-                    <label class="form-label" for="textAreaExample"
-                      >Message</label
-                    >
-                  </div>
-                </div>
-                <div class="d-flex gap-2">
-                  <div class="float-end mt-2 pt-1">
-                    <button type="submit" class="btn btn-primary btn-sm">
-                      Post comment
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary btn-sm"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -219,6 +178,46 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa">
+      <form #f="ngForm" (ngSubmit)="addComment(f)">
+        <div class="d-flex flex-start w-100">
+          <img
+            class="rounded-circle shadow-1-strong me-3"
+            src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg"
+            alt="avatar"
+            width="40"
+            height="40"
+          />
+          <div class="form-outline w-100">
+            <textarea
+              class="form-control"
+              id="textAreaExample"
+              rows="4"
+              style="background: #fff"
+              ngModel
+              name="comment"
+            ></textarea>
+            <label class="form-label" for="textAreaExample">Message</label>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <div class="float-end mt-2 pt-1" *ngIf="!loading">
+            <button type="submit" class="btn btn-primary btn-sm">
+              Post comment
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-sm">
+              Cancel
+            </button>
+          </div>
+          <div *ngIf="loading" class="">
+            <div class="spinner-border" role="status"></div>
+          </div>
+        </div>
+        <div class="divider d-flex align-items-center my-4" *ngIf="hasError">
+          <p class="text-center fw-bold mx-3 mb-0 text-danger">{{ error }}</p>
+        </div>
+      </form>
     </div>
   </section>
 </div>

@@ -11,6 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 export class EventDetailComponent implements OnInit {
   event!: Event | null;
+  loading = false;
+  error = '';
+  hasError = false;
   constructor(
     private eventService: EventsService,
     private route: ActivatedRoute,
@@ -30,11 +33,22 @@ export class EventDetailComponent implements OnInit {
     });
   }
   addComment(form: NgForm) {
+    this.loading = true;
     console.log(form.value);
     const data = { eventId: this.id, comment: form.value.comment };
-    this.eventService.addComment(data).subscribe((res: any) => {
-      if (res.success) this.fetchComments();
-      form.reset();
-    });
+    this.eventService.addComment(data).subscribe(
+      (res: any) => {
+        this.hasError = false;
+        this.loading = false;
+        if (res.success) this.fetchComments();
+        form.reset();
+        // this.NotificationService.showSuccess('Uspjesno', 'TEST');
+      },
+      (error) => {
+        this.hasError = true;
+        this.loading = false;
+        this.error = 'Morate biti logovani da biste mogli komentarisati.';
+      }
+    );
   }
 }
