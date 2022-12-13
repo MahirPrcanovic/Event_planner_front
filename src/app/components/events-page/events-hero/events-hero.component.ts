@@ -8,6 +8,7 @@ import { Category } from 'src/app/interfaces/Category';
 import { LocationService } from 'src/app/services/location.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Event } from 'src/app/interfaces/Event';
 @Component({
   selector: 'app-events-hero',
   templateUrl: './events-hero.component.html',

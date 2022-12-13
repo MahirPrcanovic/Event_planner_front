@@ -19,8 +19,8 @@ export class HeroSectionComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
       const objec = this.getDecodedAccessToken(localStorage.getItem('token'));
-      if (objec.role == 'ADMIN') this.router.navigate(['admin/events']);
-      else if (objec.role == 'USER') this.router.navigate(['events']);
+      if (objec.role == 'ADMIN') this.router.navigate(['event']);
+      else if (objec.role == 'USER') this.router.navigate(['event']);
       this.AuthService.admin.next(objec.role == 'ADMIN' ? true : false);
     }
   }
@@ -33,7 +33,7 @@ export class HeroSectionComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.hasError = false;
-        if (res.role == 'ADMIN') this.router.navigate(['admin/event']);
+        if (res.role == 'ADMIN') this.router.navigate(['event']);
         else if (res.role == 'USER') this.router.navigate(['event']);
         else this.router.navigate(['login']);
         if (form.value.rememberMe) {

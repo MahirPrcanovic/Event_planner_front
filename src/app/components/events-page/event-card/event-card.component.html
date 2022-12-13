@@ -17,11 +17,20 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Date: {{ event.date }}</li>
-    <li class="list-group-item">Location: {{ event.location.name }}</li>
-    <li class="list-group-item">Category: {{ event.category.name }}</li>
+    <li class="list-group-item">Location: {{ event.location?.name }}</li>
+    <li class="list-group-item">Category: {{ event.category?.name }}</li>
   </ul>
-  <div class="card-body">
-    <a href="#" class="card-link" [routerLink]="[event.id]">See more</a>
-    <a href="#" class="card-link">Another link</a>
+  <div class="d-flex align-items-center">
+    <div class="card-body">
+      <a href="#" class="card-link" [routerLink]="[event.id]">See more</a>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="height: 40px"
+      (click)="changeID(event.id)"
+    >
+      Update
+    </button>
   </div>
 </div>
