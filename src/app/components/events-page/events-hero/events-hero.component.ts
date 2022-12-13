@@ -7,6 +7,7 @@ import { Location } from 'src/app/interfaces/Location';
 import { Category } from 'src/app/interfaces/Category';
 import { LocationService } from 'src/app/services/location.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-events-hero',
   templateUrl: './events-hero.component.html',
@@ -23,15 +24,20 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   qSub!: Subscription;
   text: string = '';
   text2: string = '';
+  admin = false;
   constructor(
     private eventService: EventsService,
     private locationService: LocationService,
     private categoryService: CategoryService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.authService.admin.subscribe((val) => {
+      this.admin = val;
+    });
     this.loading = true;
     this.qSub = this.route.queryParams.subscribe((params) => {
       this.queryParams.category = params['category'] || '';

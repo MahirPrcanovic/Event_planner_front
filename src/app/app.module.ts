@@ -15,6 +15,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { EventsModule } from './modules/events/events.module';
 import { EventRouteComponent } from './routes/event-route/event-route.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AdminHeroComponent } from './components/admin-events-page/admin-hero/admin-hero.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AuthRouteComponent,
     AdminPageComponent,
     EventRouteComponent,
+    AdminHeroComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,9 +12,6 @@ export class EventsService {
     search: string;
   }) {
     let params = new HttpParams();
-    // params = params.append('page', queryParams.page);
-    // params = params.append('pageSize', queryParams.pageSize);
-    // console.log(queryParams);
     if (queryParams.search != '' && queryParams.search) {
       params = params.append('search', queryParams.search);
     }

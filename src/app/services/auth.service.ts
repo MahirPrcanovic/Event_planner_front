@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  authenticated = new Subject<boolean>();
+  admin: Subject<boolean> = new Subject<boolean>();
   constructor(private http: HttpClient) {}
   login(credentials: {
     username: string;

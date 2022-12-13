@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import jwt_decode from 'jwt-decode';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'login-hero-section',
   templateUrl: './hero-section.component.html',
@@ -11,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 export class HeroSectionComponent implements OnInit {
   error = '';
   hasError = false;
+
   credentials = { username: '', password: '', rememberMe: false };
   constructor(private AuthService: AuthService, private router: Router) {}
   loading = false;
@@ -19,6 +21,7 @@ export class HeroSectionComponent implements OnInit {
       const objec = this.getDecodedAccessToken(localStorage.getItem('token'));
       if (objec.role == 'ADMIN') this.router.navigate(['admin/events']);
       else if (objec.role == 'USER') this.router.navigate(['events']);
+      this.AuthService.admin.next(objec.role == 'ADMIN' ? true : false);
     }
   }
   onSubmit(form: NgForm) {
@@ -36,6 +39,7 @@ export class HeroSectionComponent implements OnInit {
         if (form.value.rememberMe) {
           localStorage.setItem('token', res.token);
         }
+        this.AuthService.admin.next(res.role == 'ADMIN' ? true : false);
       },
       (error: any) => {
         this.loading = false;

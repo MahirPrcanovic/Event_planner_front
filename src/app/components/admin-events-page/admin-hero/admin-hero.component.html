@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">PictureUrl</th>
+        <th scope="col">Location</th>
+        <th scope="col">Category</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <th scope="row">1</th>
+        <td>{{ event.name }}</td>
+        <td>{{ event.description }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.pictureUrl }}</td>
+        <td>{{ event.location?.name }}</td>
+        <td>{{ event.category?.name }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
