@@ -22,7 +22,9 @@ export class EventDetailComponent implements OnInit {
   id!: string;
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || '';
+
     if (this.id.trim() == '') this.router.navigate(['/events']);
+
     console.log(this.id);
     this.fetchComments();
   }

@@ -24,6 +24,7 @@ export class EventsService {
     if (queryParams.category != '' && queryParams.category) {
       params = params.append('category', queryParams.category);
     }
+    console.log('Sent parametres : ' + params);
     return this.http.get(environment.apiURL + 'event', {
       params: params,
     });

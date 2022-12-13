@@ -1,6 +1,40 @@
 <div class="container mt-5">
+  <form
+    action=""
+    class="d-flex gap-4 mb-5 justify-content-start"
+    #f="ngForm"
+    (ngSubmit)="searchEvents(f)"
+  >
+    <div class="form-outline">
+      <input
+        type="search"
+        id="form1"
+        class="form-control"
+        placeholder="Search..."
+        aria-label="Search"
+        ngModel
+        name="search"
+      />
+    </div>
+    <div class="form-outline">
+      <select name="location" ngModel class="form-control">
+        <option disabled>Select Location</option>
+        <option>Choose location</option>
+        <option *ngFor="let location of locations">{{ location.name }}</option>
+      </select>
+    </div>
+    <div class="form-outlne">
+      <select name="category" ngModel class="form-control">
+        <option disabled>Select Category</option>
+        <option>Choose category</option>
+        <option *ngFor="let category of categories">{{ category.name }}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+
   <div *ngIf="events.length == 0 && !loading">
-    <p class="text-center text-primary">No current events. Check later.</p>
+    <p class="text-center text-primary">No events found. Check later.</p>
   </div>
   <div *ngIf="loading == true">
     <p class="text-center text-primary">Loading...</p>
