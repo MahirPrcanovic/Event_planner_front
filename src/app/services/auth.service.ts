@@ -22,4 +22,7 @@ export class AuthService {
   }) {
     return this.http.post('http://localhost:8080/user/save', data);
   }
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

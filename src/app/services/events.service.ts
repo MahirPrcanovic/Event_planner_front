@@ -12,4 +12,9 @@ export class EventsService {
   fetchSingle(id: string) {
     return this.http.get(environment.apiURL + 'event/' + id);
   }
+  addComment(data: { eventId: string; comment: string }) {
+    return this.http.put(environment.apiURL + 'comment/' + data.eventId, {
+      comment: data.comment,
+    });
+  }
 }

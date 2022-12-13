@@ -30,8 +30,8 @@ export class HeroSectionComponent implements OnInit {
       (res: any) => {
         this.loading = false;
         this.hasError = false;
-        if (res.role == 'ADMIN') this.router.navigate(['admin/events']);
-        else if (res.role == 'USER') this.router.navigate(['events']);
+        if (res.role == 'ADMIN') this.router.navigate(['admin/event']);
+        else if (res.role == 'USER') this.router.navigate(['event']);
         else this.router.navigate(['login']);
         if (form.value.rememberMe) {
           localStorage.setItem('token', res.token);

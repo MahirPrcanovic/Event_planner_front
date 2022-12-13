@@ -3,14 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from 'src/app/services/events.service';
 import { Subscription } from 'rxjs';
 import { Event } from 'src/app/interfaces/Event';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.css'],
 })
-export class EventDetailComponent implements OnInit, OnDestroy {
-  event!: Event;
-  querySub!: Subscription;
+export class EventDetailComponent implements OnInit {
+  event!: Event | null;
   constructor(
     private eventService: EventsService,
     private route: ActivatedRoute,
@@ -21,12 +21,20 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.paramMap.get('id') || '';
     if (this.id.trim() == '') this.router.navigate(['/events']);
     console.log(this.id);
+    this.fetchComments();
+  }
+  fetchComments() {
     this.eventService.fetchSingle(this.id).subscribe((res: any) => {
       this.event = res.item;
       console.log(this.event);
     });
   }
-  ngOnDestroy(): void {
-    this.querySub.unsubscribe();
+  addComment(form: NgForm) {
+    console.log(form.value);
+    const data = { eventId: this.id, comment: form.value.comment };
+    this.eventService.addComment(data).subscribe((res: any) => {
+      if (res.success) this.fetchComments();
+      form.reset();
+    });
   }
 }
