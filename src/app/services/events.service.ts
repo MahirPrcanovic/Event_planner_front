@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -6,8 +6,27 @@ import { environment } from 'src/environments/environment';
 })
 export class EventsService {
   constructor(private http: HttpClient) {}
-  fetchAll() {
-    return this.http.get(environment.apiURL + 'event');
+  fetchAll(queryParams: {
+    location: string;
+    category: string;
+    search: string;
+  }) {
+    let params = new HttpParams();
+    // params = params.append('page', queryParams.page);
+    // params = params.append('pageSize', queryParams.pageSize);
+    // console.log(queryParams);
+    if (queryParams.search != '' && queryParams.search) {
+      params = params.append('search', queryParams.search);
+    }
+    if (queryParams.location != '' && queryParams.location) {
+      params = params.append('location', queryParams.location);
+    }
+    if (queryParams.category != '' && queryParams.category) {
+      params = params.append('category', queryParams.category);
+    }
+    return this.http.get(environment.apiURL + 'event', {
+      params: params,
+    });
   }
   fetchSingle(id: string) {
     return this.http.get(environment.apiURL + 'event/' + id);
