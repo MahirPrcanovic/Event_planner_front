@@ -34,7 +34,9 @@
   </form>
 
   <div *ngIf="events.length == 0 && !loading">
-    <p class="text-center text-primary">No events found. Check later.</p>
+    <p class="text-center text-primary">
+      {{ error || "No events found. Please try again later." }}
+    </p>
   </div>
   <div *ngIf="loading == true">
     <p class="text-center text-primary">Loading...</p>

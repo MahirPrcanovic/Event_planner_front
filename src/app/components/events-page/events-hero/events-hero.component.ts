@@ -15,7 +15,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class EventsHeroComponent implements OnInit, OnDestroy {
   events: Event[] = [];
   loading = false;
-  error = '';
+  error = null;
   success = true;
   queryParams = { location: '', category: '', search: '' };
   locations: Location[] = [];
@@ -49,6 +49,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   fetchEvents() {
     this.eventService.fetchAll(this.queryParams).subscribe(
       (res: any) => {
+        this.error = null;
         this.success = true;
         this.loading = false;
         this.events = res.data;
@@ -56,9 +57,10 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
         console.log(res);
       },
       (err) => {
+        console.log(err);
         this.loading = false;
         this.success = true;
-        this.error = err.error;
+        this.error = err.error.message;
       }
     );
   }
