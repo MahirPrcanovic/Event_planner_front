@@ -9,6 +9,8 @@ import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventRouteComponent } from './routes/event-route/event-route.component';
 import { EventDetailComponent } from './components/events-page/event-detail/event-detail.component';
 import { LocationsPageComponent } from './pages/locations-page/locations-page.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -39,6 +41,12 @@ const routes: Routes = [
   {
     path: 'location',
     component: LocationsPageComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'category',
+    component: CategoryPageComponent,
+    canActivate: [AdminGuard],
   },
 ];
 

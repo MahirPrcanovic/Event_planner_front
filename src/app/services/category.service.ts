@@ -10,4 +10,16 @@ export class CategoryService {
   fetchAll() {
     return this.http.get(environment.apiURL + 'category');
   }
+  fetchSingle(id: string) {
+    return this.http.get(environment.apiURL + 'category/' + id);
+  }
+  update(
+    id: string,
+    body: { name?: string; description?: string; pictureUrl?: string }
+  ) {
+    return this.http.patch(environment.apiURL + 'category/' + id, body);
+  }
+  addNew(body: { name?: string; description?: string; pictureUrl?: string }) {
+    return this.http.post(environment.apiURL + 'category', body);
+  }
 }

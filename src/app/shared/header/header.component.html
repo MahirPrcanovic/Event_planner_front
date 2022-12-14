@@ -39,15 +39,15 @@
             >Login</a
           >
         </li>
-        <li class="nav-item list-item" *ngIf="!loggedIn">
+        <li class="nav-item list-item border-end" *ngIf="!loggedIn">
           <a class="nav-link text-dark" href="#" routerLink="/auth/register"
             >Register</a
           >
         </li>
-        <li class="nav-item list-item" *ngIf="loggedIn">
+        <li class="nav-item list-item border-end" *ngIf="loggedIn">
           <a class="nav-link text-dark" href="#" routerLink="/user">User</a>
         </li>
-        <li class="nav-item list-item" *ngIf="admin">
+        <li class="nav-item list-item border-end" *ngIf="admin">
           <a class="nav-link text-dark" href="#" routerLink="/location"
             >Locations</a
           >

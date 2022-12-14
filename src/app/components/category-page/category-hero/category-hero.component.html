@@ -1,1 +1,97 @@
-<p>category-hero works!</p>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">IconUrl</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories; let index = index">
+        <th scope="row">{{ index + 1 }}</th>
+        <td>{{ category.name }}</td>
+
+        <td>
+          <a href="{{ category.iconUrl }}" target="_blank">{{
+            category.iconUrl
+          }}</a>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="update(category.id)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Update
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      (click)="setActive()"
+    >
+      Add Category
+    </button>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ isUpdate ? "Update category" : "Add category" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          #closeModal
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #form="ngForm" (ngSubmit)="addLocation(form)">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              ngModel
+              name="name"
+              placeholder="{{ isUpdate ? activeUpdateCategory.name : '' }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Icon Url</label
+            >
+            <textarea
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              ngModel
+              name="pictureUrl"
+              placeholder="{{ isUpdate ? activeUpdateCategory.iconUrl : '' }}"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
