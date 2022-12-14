@@ -12,33 +12,16 @@ import { EventsService } from 'src/app/services/events.service';
 export class EventCardComponent implements OnInit {
   @Input() event!: Event;
   @Input() eventID!: string;
+  @Input() admin!: boolean;
   // @Output() nekiEvent = new EventEmitter<string>();
   constructor(
     private tokenService: TokenService,
     private eventService: EventsService
   ) {}
-  admin: boolean = false;
   activeModalID: string | null = null;
   activeModalEvent: any;
   show = false;
-  ngOnInit(): void {
-    const obj = localStorage.getItem('token');
-    if (obj) {
-      const tokenData = this.getDecodedAccessToken(obj);
-      console.log('Token vrijedi za : ' + tokenData);
-      if (tokenData.role == 'ADMIN') {
-        this.tokenService.admin.next(true);
-        this.admin = true;
-      }
-    }
-  }
-  getDecodedAccessToken(token: any): any {
-    try {
-      return jwt_decode(token);
-    } catch (Error) {
-      return null;
-    }
-  }
+  ngOnInit(): void {}
   fetchEvent(id: string) {
     this.eventService.fetchSingle(id).subscribe((res: any) => {
       console.log(res);

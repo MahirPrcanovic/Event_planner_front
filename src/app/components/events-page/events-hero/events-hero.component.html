@@ -49,13 +49,15 @@
         [event]="event"
         [eventID]="event.id"
         (nekiEvent)="showModal(event.id)"
-        ><button
+      >
+        <button
           type="button"
           class="btn btn-primary"
           style="height: 40px"
           (click)="showModal(event.id)"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
+          *ngIf="admin"
         >
           Update
         </button></app-event-card

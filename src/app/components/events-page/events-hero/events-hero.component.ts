@@ -15,6 +15,7 @@ import { LocationService } from 'src/app/services/location.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Event } from 'src/app/interfaces/Event';
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-events-hero',
   templateUrl: './events-hero.component.html',
@@ -46,9 +47,17 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    const token = this.getDecodedAccessToken(localStorage.getItem('token'));
+    if (token) {
+      if (token.role === 'ADMIN') {
+        this.admin = true;
+        this.authService.admin.next(true);
+      }
+    }
     this.authService.admin.subscribe((val) => {
       this.admin = val;
     });
+    console.log('ADMIN JE : ' + this.admin);
     this.loading = true;
     this.qSub = this.route.queryParams.subscribe((params) => {
       this.queryParams.category = params['category'] || '';
@@ -140,6 +149,13 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
         this.updateError = true;
       }
     );
+  }
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
   ngOnDestroy(): void {
     this.qSub.unsubscribe();
