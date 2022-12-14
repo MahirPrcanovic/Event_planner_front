@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,5 +25,8 @@ export class AuthService {
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+  banUser(id: string) {
+    return this.http.patch(environment.apiURL + 'user/ban/' + id, {});
   }
 }

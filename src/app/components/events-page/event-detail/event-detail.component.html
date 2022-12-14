@@ -140,7 +140,7 @@
               <p class="fw-light mb-4 pb-2" *ngIf="indexel == 0">
                 Latest Comments section by users
               </p>
-              <div class="d-flex flex-start">
+              <div class="d-flex flex-start" *ngIf="!comment.appUser.isBanned">
                 <img
                   class="rounded-circle shadow-1-strong me-3"
                   src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg"
@@ -168,9 +168,21 @@
                       ><i class="fas fa-heart ms-2"></i
                     ></a>
                   </div>
-                  <p class="mb-0">
-                    {{ comment.comment }}
-                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <p class="mb-0">
+                      {{ comment.comment }}
+                    </p>
+                    <button
+                      class="mb-0 btn btn-danger"
+                      (click)="banUser(comment.appUser.id)"
+                      *ngIf="admin"
+                    >
+                      {{ comment.appUser.isBanned ? "Unban User" : "Ban User" }}
+                    </button>
+                  </div>
+                  <p *ngIf="banError">{{ banMessage }}</p>
                 </div>
               </div>
               <hr class="my-0 mt-3" />
