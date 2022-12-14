@@ -34,4 +34,8 @@ export class EventsService {
       comment: data.comment,
     });
   }
+  updateEvent(id: string, updateObj: any) {
+    console.log(updateObj);
+    return this.http.patch(environment.apiURL + 'event/' + id, updateObj);
+  }
 }

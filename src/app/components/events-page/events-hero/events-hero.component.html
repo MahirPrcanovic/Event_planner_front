@@ -73,18 +73,28 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          {{ activeModalEvent?.name }}
-        </h5>
+        <div>
+          <h5 class="modal-title" id="exampleModalLabel">
+            {{ activeModalEvent?.name }}
+          </h5>
+          <p
+            class="modal-title text-danger"
+            id="exampleModalLabel"
+            *ngIf="updateError"
+          >
+            Please enter information in correct format.
+          </p>
+        </div>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          #closeModal
         ></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form #fa="ngForm" (ngSubmit)="updateEvent(fa)">
           <div class="mb-3">
             <label for="exampleInput1" class="form-label">Name</label>
             <input
@@ -92,6 +102,8 @@
               class="form-control"
               id="exampleInput1"
               aria-describedby="emailHelp"
+              name="name"
+              ngModel
               placeholder="{{ activeModalEvent?.name }}"
             />
             <!-- <div id="emailHelp" class="form-text">
@@ -103,6 +115,8 @@
             <input
               type="text"
               class="form-control"
+              name="date"
+              ngModel
               id="exampleInputPassword1"
               placeholder="{{ activeModalEvent?.date }}"
             />
@@ -113,6 +127,8 @@
             >
             <textarea
               type="text"
+              name="description"
+              ngModel
               class="form-control"
               id="exampleInputPassword1"
               placeholder="{{ activeModalEvent?.description }}"
@@ -125,6 +141,8 @@
             <input
               type="text"
               class="form-control"
+              name="pictureUrl"
+              ngModel
               id="exampleInputPassword1"
               placeholder="{{ activeModalEvent?.pictureUrl }}"
             />
@@ -148,9 +166,9 @@
             <label for="exampleInputPassword1" class="form-label"
               >Category</label
             >
-            <select name="location" ngModel class="form-control" sele>
-              <option disabled>Select Location</option>
-              <option>Choose location</option>
+            <select name="category" ngModel class="form-control">
+              <option disabled>Select Category</option>
+              <option>Choose category</option>
               <option
                 *ngFor="let category of categories"
                 [selected]="category.id == activeModalEvent?.category?.id"

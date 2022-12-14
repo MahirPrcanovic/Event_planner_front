@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,6 +22,7 @@ import { Event } from 'src/app/interfaces/Event';
 })
 export class EventsHeroComponent implements OnInit, OnDestroy {
   events: Event[] = [];
+  @ViewChild('closeModal') closeModal!: ElementRef;
   loading = false;
   error = null;
   success = true;
@@ -28,6 +35,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   admin = false;
   activeModalID = '';
   activeModalEvent: Event | null = null;
+  updateError = false;
   constructor(
     private eventService: EventsService,
     private locationService: LocationService,
@@ -91,6 +99,47 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
     };
     this.router.navigate(['event'], { queryParams: qParams });
     this.queryParams = qParams;
+  }
+  updateEvent(form: NgForm) {
+    const updateBody: any = {};
+    console.log(form.value);
+
+    form.value.name && form.value.name.trim() !== ''
+      ? (updateBody.name = form.value.name)
+      : '';
+    form.value.description && form.value.description.trim() !== ''
+      ? (updateBody.description = form.value.description)
+      : '';
+    form.value.date && form.value.date.trim() !== ''
+      ? (updateBody.date = form.value.date)
+      : '';
+    form.value.pictureUrl && form.value.pictureUrl.trim() !== ''
+      ? (updateBody.pictureUrl = form.value.pictureUrl)
+      : '';
+    form.value.location && form.value.location.trim() !== ''
+      ? (updateBody.locationID = this.locations.find(
+          (l) => l.name == form.value.location
+        )?.id)
+      : '';
+    form.value.category && form.value.category.trim() !== ''
+      ? (updateBody.categoryID = this.categories.find(
+          (l) => l.name == form.value.category
+        )?.id)
+      : '';
+    console.log('Za poslati obj');
+    console.log(updateBody);
+    this.eventService.updateEvent(this.activeModalID, updateBody).subscribe(
+      (res: any) => {
+        console.log(res);
+        form.reset();
+        const id = this.events.findIndex((ev) => ev.id == this.activeModalID);
+        this.events[id] = res.item;
+        this.closeModal.nativeElement.click();
+      },
+      (err) => {
+        this.updateError = true;
+      }
+    );
   }
   ngOnDestroy(): void {
     this.qSub.unsubscribe();
