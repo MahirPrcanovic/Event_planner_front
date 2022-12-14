@@ -16,6 +16,10 @@ import { EventsModule } from './modules/events/events.module';
 import { EventRouteComponent } from './routes/event-route/event-route.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AdminHeroComponent } from './components/admin-events-page/admin-hero/admin-hero.component';
+import { LocationsPageComponent } from './pages/locations-page/locations-page.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
+import { LocationHeroComponent } from './components/location-page/location-hero/location-hero.component';
+import { CategoryHeroComponent } from './components/category-page/category-hero/category-hero.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +31,10 @@ import { AdminHeroComponent } from './components/admin-events-page/admin-hero/ad
     AdminPageComponent,
     EventRouteComponent,
     AdminHeroComponent,
+    LocationsPageComponent,
+    CategoryPageComponent,
+    LocationHeroComponent,
+    CategoryHeroComponent,
   ],
   imports: [
     BrowserModule,

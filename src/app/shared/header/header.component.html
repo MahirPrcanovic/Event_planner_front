@@ -47,6 +47,16 @@
         <li class="nav-item list-item" *ngIf="loggedIn">
           <a class="nav-link text-dark" href="#" routerLink="/user">User</a>
         </li>
+        <li class="nav-item list-item" *ngIf="admin">
+          <a class="nav-link text-dark" href="#" routerLink="/location"
+            >Locations</a
+          >
+        </li>
+        <li class="nav-item list-item" *ngIf="admin">
+          <a class="nav-link text-dark" href="#" routerLink="/category"
+            >Categories</a
+          >
+        </li>
       </ul>
     </div>
   </div>

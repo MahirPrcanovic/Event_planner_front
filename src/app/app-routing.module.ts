@@ -8,6 +8,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventRouteComponent } from './routes/event-route/event-route.component';
 import { EventDetailComponent } from './components/events-page/event-detail/event-detail.component';
+import { LocationsPageComponent } from './pages/locations-page/locations-page.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       { path: '', component: EventsPageComponent },
       { path: ':id', component: EventDetailComponent },
     ],
+  },
+  {
+    path: 'location',
+    component: LocationsPageComponent,
   },
 ];
 
