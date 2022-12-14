@@ -9,4 +9,16 @@ export class LocationService {
   fetchAll() {
     return this.http.get(environment.apiURL + 'location');
   }
+  fetchSingle(id: string) {
+    return this.http.get(environment.apiURL + 'location/' + id);
+  }
+  update(
+    id: string,
+    body: { name?: string; description?: string; pictureUrl?: string }
+  ) {
+    return this.http.patch(environment.apiURL + 'location/' + id, body);
+  }
+  addNew(body: { name?: string; description?: string; pictureUrl?: string }) {
+    return this.http.post(environment.apiURL + 'location', body);
+  }
 }
