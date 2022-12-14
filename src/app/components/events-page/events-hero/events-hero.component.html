@@ -45,33 +45,123 @@
   </div>
   <div class="row row-cols-4">
     <div class="col mb-5" *ngFor="let event of events">
-      <app-event-card [event]="event" [eventID]="event.id"></app-event-card>
+      <app-event-card
+        [event]="event"
+        [eventID]="event.id"
+        (nekiEvent)="showModal(event.id)"
+        ><button
+          type="button"
+          class="btn btn-primary"
+          style="height: 40px"
+          (click)="showModal(event.id)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Update
+        </button></app-event-card
+      >
     </div>
   </div>
 </div>
-<!-- <form *ngIf="show">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Name of event</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-      placeholder="{{ activeModalEvent.name }}"
-      name="name"
-      ngModel
-    />
-    <div id="emailHelp" class="form-text">
-      We'll never share your email with anyone else.
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ activeModalEvent?.name }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Name</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInput1"
+              aria-describedby="emailHelp"
+              placeholder="{{ activeModalEvent?.name }}"
+            />
+            <!-- <div id="emailHelp" class="form-text">
+              We'll never share your email with anyone else.
+            </div> -->
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Date</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="{{ activeModalEvent?.date }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Description</label
+            >
+            <textarea
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="{{ activeModalEvent?.description }}"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Picture Url</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="{{ activeModalEvent?.pictureUrl }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Location</label
+            >
+            <select name="location" ngModel class="form-control">
+              <option disabled>Select Location</option>
+              <option>Choose location</option>
+              <option
+                *ngFor="let location of locations"
+                [selected]="location.id == activeModalEvent?.location?.id"
+              >
+                {{ location.name }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Category</label
+            >
+            <select name="location" ngModel class="form-control" sele>
+              <option disabled>Select Location</option>
+              <option>Choose location</option>
+              <option
+                *ngFor="let category of categories"
+                [selected]="category.id == activeModalEvent?.category?.id"
+              >
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" />
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
+</div>

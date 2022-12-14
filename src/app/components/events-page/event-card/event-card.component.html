@@ -24,13 +24,14 @@
     <div class="card-body">
       <a href="#" class="card-link" [routerLink]="[event.id]">See more</a>
     </div>
-    <button
+    <ng-content></ng-content>
+    <!-- <button
       type="button"
       class="btn btn-primary"
       style="height: 40px"
       (click)="changeID(event.id)"
     >
       Update
-    </button>
+    </button> -->
   </div>
 </div>

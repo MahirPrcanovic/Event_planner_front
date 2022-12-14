@@ -12,7 +12,7 @@ import { EventsService } from 'src/app/services/events.service';
 export class EventCardComponent implements OnInit {
   @Input() event!: Event;
   @Input() eventID!: string;
-  @Output() nekiEvent = new EventEmitter<Event>();
+  // @Output() nekiEvent = new EventEmitter<string>();
   constructor(
     private tokenService: TokenService,
     private eventService: EventsService
@@ -43,7 +43,7 @@ export class EventCardComponent implements OnInit {
     this.eventService.fetchSingle(id).subscribe((res: any) => {
       console.log(res);
       this.activeModalEvent = res.item;
-      this.nekiEvent.emit(res.item);
+      // this.nekiEvent.emit(res.item);
       console.log(
         'active element' +
           this.activeModalEvent.name +
@@ -52,10 +52,11 @@ export class EventCardComponent implements OnInit {
       );
     });
   }
-  changeID(id: string) {
-    this.activeModalID = id;
-    console.log(id);
-    this.fetchEvent(id);
-    this.show = true;
-  }
+  // changeID(id: string) {
+  //   this.nekiEvent.emit(id);
+  //   this.activeModalID = id;
+  //   console.log(id);
+  //   this.fetchEvent(id);
+  //   this.show = true;
+  // }
 }

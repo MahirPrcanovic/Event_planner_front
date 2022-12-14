@@ -26,6 +26,8 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   text: string = '';
   text2: string = '';
   admin = false;
+  activeModalID = '';
+  activeModalEvent: Event | null = null;
   constructor(
     private eventService: EventsService,
     private locationService: LocationService,
@@ -70,6 +72,13 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
         this.error = err.error.message;
       }
     );
+  }
+  showModal(id: string) {
+    console.log('ID JE : ' + id);
+    this.activeModalID = id;
+    this.eventService.fetchSingle(this.activeModalID).subscribe((res: any) => {
+      this.activeModalEvent = res.item;
+    });
   }
   searchEvents(form: NgForm) {
     console.log(form.value);
