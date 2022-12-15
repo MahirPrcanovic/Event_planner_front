@@ -29,4 +29,7 @@ export class AuthService {
   banUser(id: string) {
     return this.http.patch(environment.apiURL + 'user/ban/' + id, {});
   }
+  getSingleUser(id: string) {
+    return this.http.get(environment.apiURL + 'user/' + id);
+  }
 }

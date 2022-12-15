@@ -7,9 +7,12 @@ export class Helper {
     }
     return false;
   }
-  public static ispis(): string {
-    console.log('TEST');
-    return 'TEST';
+  public static getUserID(): string {
+    const token = getDecodedAccessToken(localStorage.getItem('token'));
+    if (token) {
+      return token.id;
+    }
+    return 'no';
   }
 }
 function getDecodedAccessToken(token: any): any {

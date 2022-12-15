@@ -11,6 +11,7 @@ import { EventDetailComponent } from './components/events-page/event-detail/even
 import { LocationsPageComponent } from './pages/locations-page/locations-page.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { AdminGuard } from './guards/admin.guard';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     component: CategoryPageComponent,
     canActivate: [AdminGuard],
   },
+  { path: 'user', component: UsersPageComponent },
 ];
 
 @NgModule({
