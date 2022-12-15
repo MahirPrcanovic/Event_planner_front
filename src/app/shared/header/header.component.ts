@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Helper } from '../Helper';
 
 @Component({
@@ -9,10 +10,15 @@ import { Helper } from '../Helper';
 export class HeaderComponent implements OnInit {
   admin = false;
   loggedIn = false;
-  constructor() {}
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.admin = Helper.isAdmin();
     this.loggedIn = localStorage.getItem('token') ? true : false;
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['auth/login']);
   }
 }

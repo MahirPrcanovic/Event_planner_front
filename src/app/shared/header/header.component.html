@@ -28,10 +28,10 @@
             >Events</a
           >
         </li>
-        <li class="nav-item border-end list-item">
+        <li class="nav-item border-end list-item" *ngIf="!admin">
           <a class="nav-link text-dark" href="#">About</a>
         </li>
-        <li class="nav-item border-end list-item">
+        <li class="nav-item border-end list-item" *ngIf="!admin">
           <a class="nav-link text-dark" href="#">Contact</a>
         </li>
         <li class="nav-item list-item border-end" *ngIf="!loggedIn">
@@ -44,18 +44,22 @@
             >Register</a
           >
         </li>
-        <li class="nav-item list-item border-end" *ngIf="loggedIn">
-          <a class="nav-link text-dark" href="#" routerLink="/user">User</a>
-        </li>
+
         <li class="nav-item list-item border-end" *ngIf="admin">
           <a class="nav-link text-dark" href="#" routerLink="/location"
             >Locations</a
           >
         </li>
-        <li class="nav-item list-item" *ngIf="admin">
+        <li class="nav-item list-item border-end" *ngIf="admin">
           <a class="nav-link text-dark" href="#" routerLink="/category"
             >Categories</a
           >
+        </li>
+        <li class="nav-item list-item border-end" *ngIf="loggedIn">
+          <a class="nav-link text-dark" href="#" routerLink="/user">User</a>
+        </li>
+        <li class="nav-item list-item" *ngIf="loggedIn">
+          <a class="nav-link text-dark" href="#" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
