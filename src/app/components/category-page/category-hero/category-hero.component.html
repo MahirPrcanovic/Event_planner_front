@@ -1,45 +1,37 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">IconUrl</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of categories; let index = index">
-        <th scope="row">{{ index + 1 }}</th>
-        <td>{{ category.name }}</td>
-
-        <td>
-          <a href="{{ category.iconUrl }}" target="_blank">{{
-            category.iconUrl
-          }}</a>
-        </td>
-        <td>
-          <button
-            class="btn btn-primary"
-            (click)="update(category.id)"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            Update
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
-    <button
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-      (click)="setActive()"
-    >
-      Add Category
-    </button>
+  <div class="row row-cols-4 gap-4">
+    <div class="card" style="width: 18rem" *ngFor="let category of categories">
+      <img
+        src="{{ category.iconUrl }}"
+        style="height: 15rem"
+        class="card-img-top mt-2"
+        alt="Some alt text"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ category.name }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <button
+          class="btn btn-primary"
+          (click)="update(category.id)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Update
+        </button>
+      </div>
+    </div>
   </div>
+  <button
+    class="btn btn-primary mt-5"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    (click)="setActive()"
+  >
+    Add Category
+  </button>
 </div>
 <div
   class="modal fade"

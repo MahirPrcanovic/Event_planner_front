@@ -17,7 +17,9 @@ export class UsersHeroComponent implements OnInit {
   success = false;
   successMsg = '';
   loading = false;
+  isAdmin = false;
   ngOnInit(): void {
+    this.isAdmin = Helper.isAdmin();
     this.fetchUser();
   }
   fetchUser() {

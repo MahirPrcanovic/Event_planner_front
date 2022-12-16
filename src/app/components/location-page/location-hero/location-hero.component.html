@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="table">
+  <!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -30,10 +30,37 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+  <div class="row row-cols-4 gap-4">
+    <div class="card" style="width: 18rem" *ngFor="let location of locations">
+      <img
+        src="{{ location.pictureUrl }}"
+        style="height: 10rem"
+        class="card-img-top mt-2"
+        alt="Some alt text"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ location.name }}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <div class="mt-auto border border-black">
+          <button
+            class="btn btn-primary"
+            (click)="update(location.id)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div>
     <button
-      class="btn btn-primary"
+      class="btn btn-primary mt-5"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       (click)="setActive()"
