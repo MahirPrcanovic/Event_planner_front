@@ -66,7 +66,7 @@ export class CategoryHeroComponent implements OnInit {
     }
     updateBody.name = form.value.name;
     updateBody.description = form.value.description;
-    updateBody.pictureUrl = form.value.pictureUrl;
+    updateBody.iconUrl = form.value.iconUrl;
     this.categoryService.addNew(updateBody).subscribe((res: any) => {
       console.log(res);
       this.categories.push(res.item);

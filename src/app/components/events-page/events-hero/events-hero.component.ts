@@ -167,6 +167,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   makeNewEvent(form: NgForm) {
     console.log('MAKE NEW EVENT');
     console.log(form.value);
+    this.updateError = false;
     const makeObj: any = {};
     form.value.name && form.value.name.trim() !== ''
       ? (makeObj.name = form.value.name)
