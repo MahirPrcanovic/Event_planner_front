@@ -93,7 +93,9 @@
           <div class="col-md-8">
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
-                <form>
+                <p class="text-danger" *ngIf="error">{{ errorMsg }}</p>
+                <p class="text-success" *ngIf="success">{{ successMsg }}</p>
+                <form #fae="ngForm" (ngSubmit)="changePassword(fae)">
                   <div class="mb-3">
                     <label for="exampleInputPassword" class="form-label"
                       >Current password</label
@@ -103,6 +105,8 @@
                       class="form-control"
                       id="exampleInputPassword"
                       aria-describedby="emailHelp"
+                      ngModel
+                      name="currentPassword"
                     />
                   </div>
                   <div class="mb-3">
@@ -113,19 +117,32 @@
                       type="password"
                       class="form-control"
                       id="exampleInputPassword1"
+                      name="newPassword"
+                      ngModel
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"
+                    <label for="exampleInputPassword2" class="form-label"
                       >Repeat Password</label
                     >
                     <input
                       type="password"
                       class="form-control"
-                      id="exampleInputPassword1"
+                      id="exampleInputPassword2"
+                      name="passwordRepeat"
+                      ngModel
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <div *ngIf="loading" class="">
+                    <div class="spinner-border" role="status"></div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    *ngIf="!loading"
+                  >
+                    Submit
+                  </button>
                 </form>
               </div>
             </div>

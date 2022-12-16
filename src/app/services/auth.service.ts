@@ -32,4 +32,7 @@ export class AuthService {
   getSingleUser(id: string) {
     return this.http.get(environment.apiURL + 'user/' + id);
   }
+  changePass(changePassObj: { currentPassword: string; newPassword: string }) {
+    return this.http.put(environment.apiURL + 'user/changepass', changePassObj);
+  }
 }
