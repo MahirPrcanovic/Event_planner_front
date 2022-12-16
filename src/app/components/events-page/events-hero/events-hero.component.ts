@@ -37,6 +37,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
   activeModalID = '';
   activeModalEvent: Event | null = null;
   updateError = false;
+  method = 'POST';
   constructor(
     private eventService: EventsService,
     private locationService: LocationService,
@@ -91,11 +92,15 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
     );
   }
   showModal(id: string) {
+    this.method = 'PUT';
     console.log('ID JE : ' + id);
     this.activeModalID = id;
     this.eventService.fetchSingle(this.activeModalID).subscribe((res: any) => {
       this.activeModalEvent = res.item;
     });
+  }
+  setMethod() {
+    this.method = 'POST';
   }
   searchEvents(form: NgForm) {
     console.log(form.value);
@@ -109,7 +114,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
     this.router.navigate(['event'], { queryParams: qParams });
     this.queryParams = qParams;
   }
-  updateEvent(form: NgForm) {
+  updateEvent(form: any) {
     const updateBody: any = {};
     console.log(form.value);
 
@@ -123,7 +128,7 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
       ? (updateBody.date = form.value.date)
       : '';
     form.value.pictureUrl && form.value.pictureUrl.trim() !== ''
-      ? (updateBody.pictureUrl = form.value.pictureUrl)
+      ? (updateBody.picUrl = form.value.pictureUrl)
       : '';
     form.value.location && form.value.location.trim() !== ''
       ? (updateBody.locationID = this.locations.find(
@@ -135,7 +140,6 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
           (l) => l.name == form.value.category
         )?.id)
       : '';
-    console.log('Za poslati obj');
     console.log(updateBody);
     this.eventService.updateEvent(this.activeModalID, updateBody).subscribe(
       (res: any) => {
@@ -149,6 +153,56 @@ export class EventsHeroComponent implements OnInit, OnDestroy {
         this.updateError = true;
       }
     );
+  }
+  formSubmit(form: NgForm) {
+    switch (this.method) {
+      case 'PUT':
+        this.updateEvent(form);
+        break;
+      case 'POST':
+        this.makeNewEvent(form);
+        break;
+    }
+  }
+  makeNewEvent(form: NgForm) {
+    console.log('MAKE NEW EVENT');
+    console.log(form.value);
+    const makeObj: any = {};
+    form.value.name && form.value.name.trim() !== ''
+      ? (makeObj.name = form.value.name)
+      : (this.updateError = true);
+    form.value.description && form.value.description.trim() !== ''
+      ? (makeObj.description = form.value.description)
+      : (this.updateError = true);
+    form.value.date && form.value.date.trim() !== ''
+      ? (makeObj.date = form.value.date)
+      : (this.updateError = true);
+    form.value.pictureUrl && form.value.pictureUrl.trim() !== ''
+      ? (makeObj.picUrl = form.value.pictureUrl)
+      : (this.updateError = true);
+    form.value.location && form.value.location.trim() !== ''
+      ? (makeObj.locationID = this.locations.find(
+          (l) => l.name == form.value.location
+        )?.id)
+      : (this.updateError = true);
+    form.value.category && form.value.category.trim() !== ''
+      ? (makeObj.categoryID = this.categories.find(
+          (l) => l.name == form.value.category
+        )?.id)
+      : (this.updateError = true);
+    if (!this.updateError) {
+      this.eventService.addNewEvent(makeObj).subscribe(
+        (res: any) => {
+          console.log(res);
+          form.reset();
+          this.events.push(res.item);
+          this.closeModal.nativeElement.click();
+        },
+        (err: any) => {
+          this.updateError = true;
+        }
+      );
+    }
   }
   getDecodedAccessToken(token: any): any {
     try {

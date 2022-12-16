@@ -38,4 +38,14 @@ export class EventsService {
     console.log(updateObj);
     return this.http.patch(environment.apiURL + 'event/' + id, updateObj);
   }
+  addNewEvent(makeObj: {
+    name: string;
+    date: string;
+    description: string;
+    picUrl: string;
+    locationID: string;
+    categoryID: string;
+  }) {
+    return this.http.post(environment.apiURL + 'event', makeObj);
+  }
 }

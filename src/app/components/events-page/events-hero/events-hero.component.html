@@ -64,6 +64,14 @@
       >
     </div>
   </div>
+  <button
+    class="btn btn-primary"
+    (click)="setMethod()"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Add new Event
+  </button>
 </div>
 <div
   class="modal fade"
@@ -77,7 +85,7 @@
       <div class="modal-header">
         <div>
           <h5 class="modal-title" id="exampleModalLabel">
-            {{ activeModalEvent?.name }}
+            {{ method === "POST" ? "Add new event" : activeModalEvent?.name }}
           </h5>
           <p
             class="modal-title text-danger"
@@ -96,7 +104,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form #fa="ngForm" (ngSubmit)="updateEvent(fa)">
+        <form #fa="ngForm" (ngSubmit)="formSubmit(fa)">
           <div class="mb-3">
             <label for="exampleInput1" class="form-label">Name</label>
             <input
